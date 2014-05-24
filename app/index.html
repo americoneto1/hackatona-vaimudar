@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
     </head>
-    <body>
+    <body ng-controller="MainCtrl">
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->        
@@ -25,43 +25,43 @@
     <div class="navbar navbar-custom navbar-fixed-top">
         <div class="navbar-header navbar-brand">Protestos na sua região</a></div>
         <form class="navbar-form">
-            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">                        
-                <select class="form-control">
-                    <option>Estado</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espirito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraiba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantis</option>
-                </select>
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                <input type="text" name="estados" list="estados" class="form-control">
+                <datalist id="estados">
+                    <option value="São Paulo"></option>
+                    <option value="Rio de Janeiro"></option>
+                    <option value="Acre"></option>
+                    <option value="Alagoas"></option>
+                    <option value="Amapá"></option>
+                    <option value="Amazonas"></option>
+                    <option value="Bahia"></option>
+                    <option value="Ceará"></option>
+                    <option value="Distrito Federal"></option>
+                    <option value="Espirito Santo"></option>
+                    <option value="Goiás"></option>
+                    <option value="Maranhão"></option>
+                    <option value="Mato Grosso"></option>
+                    <option value="Mato Grosso do Sul"></option>
+                    <option value="Minas Gerais"></option>
+                    <option value="Pará"></option>
+                    <option value="Paraiba"></option>
+                    <option value="Paraná"></option>
+                    <option value="Pernambuco"></option>
+                    <option value="Piauí"></option>
+                    <option value="Rio Grande do Norte"></option>
+                    <option value="Rio Grande do Sul"></option>
+                    <option value="Rondônia"></option>
+                    <option value="Roraima"></option>
+                    <option value="Santa Catarina"></option>
+                    <option value="Sergipe"></option>
+                    <option value="Tocantis"></option>                
+                </datalist>
             </div>
             <div class="col-xs-10 col-sm-4 col-md-4 col-lg-6">
-                <input type="text" class="form-control" placeholder="Cidade">
+                <input type="text" class="form-control" ng-model="cidade" placeholder="Cidade">
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <button type="button" class="btn btn-info">Buscar</button>    
+                <button type="button" class="btn btn-info" ng-click="buscar()">Buscar</button>    
             </div>            
         </form>            
     </div>
@@ -71,69 +71,22 @@
         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">    
             <h3>Manifestações ativas em votação</h3>
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-repeat="item in manifestacoes">            
                 <div class="panel panel-primary">
-                  <div class="panel-heading">Movimento dos Sem Teto (MST)</div>
+                  <div class="panel-heading">{{item.titulo}}</div>
                   <div class="panel-body">
-                    <p>Data: 22/05 às 14h</p>
-                    <p>Ponto de encontro: Av. Paulista (MASP)</p>
-                    <button type="button" class="btn btn-success btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> A favor (81)
+                    <p>Data: {{item.dataHora}}</p>
+                    <p>Ponto de encontro: {{item.pontoEncontro}}</p>
+                    <p><em>{{item.tags}}</em></p>
+                    <button type="button" class="btn btn-success btn-xs" ng-click="votar(item.id, 1)">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> A favor ({{item.afavor}})
                     </button>
-                    <button type="button" class="btn btn-danger btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-down"></span> Contra (10)
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="votar(item.id, 0)">
+                        <span class="glyphicon glyphicon-thumbs-down"></span> Contra ({{item.contra}})
                     </button>
                   </div>
                 </div>            
-            </div>
-
-           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">Movimento dos Sem Teto (MST)</div>
-                  <div class="panel-body">
-                    <p>Data: 22/05 às 14h</p>
-                    <p>Ponto de encontro: Av. Paulista (MASP)</p>
-                    <button type="button" class="btn btn-success btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> A favor (81)
-                    </button>
-                    <button type="button" class="btn btn-danger btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-down"></span> Contra (10)
-                    </button>
-                  </div>
-                </div>            
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">Movimento dos Sem Teto (MST)</div>
-                  <div class="panel-body">
-                    <p>Data: 22/05 às 14h</p>
-                    <p>Ponto de encontro: Av. Paulista (MASP)</p>
-                    <button type="button" class="btn btn-success btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> A favor (81)
-                    </button>
-                    <button type="button" class="btn btn-danger btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-down"></span> Contra (10)
-                    </button>
-                  </div>
-                </div>            
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">Movimento dos Sem Teto (MST)</div>
-                  <div class="panel-body">
-                    <p>Data: 22/05 às 14h</p>
-                    <p>Ponto de encontro: Av. Paulista (MASP)</p>
-                    <button type="button" class="btn btn-success btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> A favor (81)
-                    </button>
-                    <button type="button" class="btn btn-danger btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-down"></span> Contra (10)
-                    </button>
-                  </div>
-                </div>            
-            </div>
+            </div>            
 
             <h3>Organizar manifestação pacífica</h3>
 
@@ -142,46 +95,46 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">                                
                   <div class="form-group">
                     <label class="sr-only" for="titulo">Título</label>
-                    <input type="text" class="form-control" id="titulo" placeholder="Título">
+                    <input type="text" class="form-control" ng-model="titulo" id="titulo" placeholder="Título">
                   </div>
                   <div class="form-group">
                     <label class="sr-only" for="datahora">Data e Hora</label>
-                    <input type="text" class="form-control" id="datahora" placeholder="Data e hora">
+                    <input type="text" class="form-control" ng-model="dataHora" id="datahora" placeholder="Data e hora">
                   </div>
                   <div class="form-group">
                     <label class="sr-only" for="pontoencontro">Ponto de encontro</label>
-                    <input type="text" class="form-control" id="pontoencontro" placeholder="Ponto de encontro">
+                    <input type="text" class="form-control" ng-model="pontoEncontro" id="pontoencontro" placeholder="Ponto de encontro">
                   </div>  
                   <div class="form-group">
                     <label class="sr-only" for="descricao">Descrição</label>
-                    <textarea class="form-control" rows="4" id="descricao">Descrição detalhada com objetivo, metas e propostas</textarea>
+                    <textarea class="form-control" rows="4" ng-model="descricao" id="descricao">Descrição detalhada com objetivo, metas e propostas</textarea>
                   </div>   
                 </div> 
                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">            
                     <label>Causas defendidas</label>
                     <div class="checkbox">
-                      <label><input type="checkbox" value="">Melhorias em moradia</label>                      
+                      <label><input type="checkbox" name="causas[]" ng-model="causas.moradia" value="moradia">Melhorias em moradia</label>                      
                     </div>    
                     <div class="checkbox">
-                      <label><input type="checkbox" value="">Gastos com a copa</label>                      
+                      <label><input type="checkbox" name="causas[]" ng-model="causas.copa" value="copa">Gastos com a copa</label>                      
                     </div> 
                     <div class="checkbox">
-                      <label><input type="checkbox" value="">Investimento em educação</label>                      
+                      <label><input type="checkbox" name="causas[]" ng-model="causas.educacao" value="educacao">Investimento em educação</label>                      
                     </div>  
                     <div class="checkbox">
-                      <label><input type="checkbox" value="">Reajuste de salário da categoria</label>                      
+                      <label><input type="checkbox" name="causas[]" ng-model="causas.greve" value="greve">Reajuste de salário da categoria</label>                      
                     </div> 
                     <div class="checkbox">
-                      <label><input type="checkbox" value="">Votação de PECs</label>                      
+                      <label><input type="checkbox" name="causas[]" ng-model="causas.pecs" value="pecs">Votação de PECs</label>                      
                     </div> 
                     <div class="checkbox">
-                      <label><input type="checkbox" value="">Transporte público</label>                      
+                      <label><input type="checkbox" name="causas[]" ng-model="causas.transporte" value="transporte">Transporte público</label>                      
                     </div> 
                     <div class="checkbox">
-                      <label><input type="checkbox" value="">Preconceito racial</label>                      
+                      <label><input type="checkbox" name="causas[]" ng-model="causas.preconceito" value="preconceito">Preconceito racial</label>                      
                     </div> 
                     <div class="checkbox">
-                      <label><input type="checkbox" value="">Outros</label>                      
+                      <label><input type="checkbox" name="causas[]" ng-model="causas.outros" value="outros">Outros</label>                      
                     </div> 
                 </div>  
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
@@ -189,7 +142,7 @@
                     <br />
                     <p>Todas as manifestações criadas, serão avaliadas e, se aprovadas, publicadas para votação popular.</p>
                     <br />
-                    <button type="submit" class="btn btn-success">Enviar proposta!</button>                                     
+                    <button type="button" class="btn btn-success" ng-click="cadastrar()">Enviar proposta!</button>                                     
                 </div>                                                    
                 </form>   
             </div> 
@@ -201,7 +154,8 @@
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
-        <script src="bower_components/jquery/jquery.js"></script>        
+        <script src="bower_components/jquery/jquery.js"></script> 
+        <script src="bower_components/angular/angular.js"></script>      
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -221,7 +175,7 @@
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 
-        <!-- build:js scripts/plugins.js -->
+        <!-- build:js scripts/plugins.js -->        
         <script src="bower_components/sass-bootstrap/js/affix.js"></script>
         <script src="bower_components/sass-bootstrap/js/alert.js"></script>
         <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
