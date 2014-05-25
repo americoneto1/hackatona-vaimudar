@@ -1,0 +1,97 @@
+<div class="navbar navbar-custom navbar-fixed-top">
+    <div class="navbar-header navbar-brand">Protestos na sua região</a></div>
+    <form class="navbar-form">        
+        <div class="col-xs-10 col-sm-4 col-md-4 col-lg-6">
+            <input type="text" class="form-control" id="cidade" ng-model="cidade" value="São Paulo" placeholder="Procure na sua cidade">
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <button type="button" class="btn btn-info" ng-click="buscar()">Buscar</button>    
+        </div>            
+    </form>            
+</div>
+
+<div id="map-canvas"></div>
+<div class="container-fluid">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">    
+        <h3>Manifestações ativas em votação</h3>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-repeat="item in manifestacoes">            
+            <div class="panel panel-primary">
+              <div class="panel-heading">{{item.titulo}}</div>
+              <div class="panel-body">
+                <p>Data: {{item.dataHora}}</p>
+                <p>Ponto de encontro: {{item.pontoEncontro}}</p>
+                <p><em>{{item.tags}}</em></p>
+                <button type="button" class="btn btn-success btn-xs" ng-click="votar(item._id, 1)">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> A favor ({{item.afavor}})
+                </button>
+                <button type="button" class="btn btn-danger btn-xs" ng-click="votar(item._id, 0)">
+                    <span class="glyphicon glyphicon-thumbs-down"></span> Contra ({{item.contra}})
+                </button>
+              </div>
+            </div>            
+        </div>            
+
+        <h3>Organizar manifestação pacífica</h3>
+
+        <div class="well" style="display: table; width: 100%;">
+            <form class="form-horizontal" role="form">   
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">                                
+              <div class="form-group">
+                <label class="sr-only" for="titulo">Título</label>
+                <input type="text" class="form-control" ng-model="titulo" id="titulo" placeholder="Título">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="datahora">Data e Hora</label>
+                <input type="text" class="form-control" ng-model="dataHora" id="datahora" placeholder="Data e hora">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="pontoencontro">Ponto de encontro</label>
+                <input type="text" class="form-control" ng-model="pontoEncontro" id="pontoencontro" placeholder="Ponto de encontro">
+              </div>  
+              <div class="form-group">
+                <label class="sr-only" for="descricao">Descrição</label>
+                <textarea class="form-control" rows="4" ng-model="descricao" id="descricao">Descrição detalhada com objetivo, metas e propostas</textarea>
+              </div>   
+            </div> 
+             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">            
+                <label>Causas defendidas</label>
+                <div class="checkbox">
+                  <label><input type="checkbox" name="causas[]" ng-model="causas.moradia" value="moradia">Melhorias em moradia</label>                      
+                </div>    
+                <div class="checkbox">
+                  <label><input type="checkbox" name="causas[]" ng-model="causas.copa" value="copa">Gastos com a copa</label>                      
+                </div> 
+                <div class="checkbox">
+                  <label><input type="checkbox" name="causas[]" ng-model="causas.educacao" value="educacao">Investimento em educação</label>                      
+                </div>  
+                <div class="checkbox">
+                  <label><input type="checkbox" name="causas[]" ng-model="causas.greve" value="greve">Reajuste de salário da categoria</label>                      
+                </div> 
+                <div class="checkbox">
+                  <label><input type="checkbox" name="causas[]" ng-model="causas.pecs" value="pecs">Votação de PECs</label>                      
+                </div> 
+                <div class="checkbox">
+                  <label><input type="checkbox" name="causas[]" ng-model="causas.transporte" value="transporte">Transporte público</label>                      
+                </div> 
+                <div class="checkbox">
+                  <label><input type="checkbox" name="causas[]" ng-model="causas.preconceito" value="preconceito">Preconceito racial</label>                      
+                </div> 
+                <div class="checkbox">
+                  <label><input type="checkbox" name="causas[]" ng-model="causas.outros" value="outros">Outros</label>                      
+                </div> 
+            </div>  
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                <h4>Ajude a melhorar nosso país, através de manifestações pacíficas e objetivas</h4>
+                <br />
+                <p>Todas as manifestações criadas, serão avaliadas e, se aprovadas, publicadas para votação popular.</p>
+                <br />
+                <button type="button" class="btn btn-success" ng-click="cadastrar()">Enviar proposta!</button>                                     
+            </div>                                                    
+            </form>   
+        </div> 
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">    
+        <!--map-canvas will be postioned here-->
+    </div>    
+</div>
