@@ -1,6 +1,8 @@
 Aplicação de controle de manifestações
 ==================
 
+Demo: http://hackatona-manifestacao-popular.herokuapp.com/
+
 ## Objetivo da aplicação
 
 Fomentar a organização de protestos, através da divulgação e organização por temas específicos.
@@ -15,10 +17,10 @@ A aplicação pode ser visualizada em telas menores, como tablets e smartphones,
 
 A aplicação utiliza o Yeoman generator, portanto é necessário rodar os seguintes comandos.
 
--Pré requisitos
-NodeJS 
-Ruby
-MongoDB
+### Pré requisitos
+ * NodeJS
+ * Ruby
+ * MongoDB
 
 ```bash
 $ npm install grunt-cli -g
