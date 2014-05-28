@@ -1,8 +1,6 @@
 Aplicação de controle de manifestações
 ==================
 
-Demo: http://hackatona-manifestacao-popular.herokuapp.com/
-
 ## Objetivo da aplicação
 
 Fomentar a organização de protestos, através da divulgação e organização por temas específicos.
