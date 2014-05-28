@@ -22,12 +22,6 @@ angular.module('fullApp')
 		MapsService.setPosition(pieces[0], pieces[1]);
 	}
 
-	$scope.search = function() {
-		$http.get('/api/manifestacoes/?cidade='+ $scope.cidade).then(function(res){
-            $scope.manifestacoes = res.data;
-        });
-	}
-
 	$scope.register = function() {
 		var data = { 
 			titulo: $scope.titulo,
@@ -101,7 +95,10 @@ angular.module('fullApp')
 	    	var place = cidade.getPlace();
 	    	$scope.cidade = place.formatted_address;
 	    	MapsService.setPosition(place.geometry.location.lat(), place.geometry.location.lng());
-	    });		
+	    	$http.get('/api/manifestacoes/?cidade='+ $scope.cidade).then(function(res){
+	            $scope.manifestacoes = res.data;
+	        });
+	    });
 	}
 
 

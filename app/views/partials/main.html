@@ -1,23 +1,22 @@
 <div class="navbar navbar-custom navbar-fixed-top">
     <div class="navbar-header navbar-brand">Protestos na sua região</a></div>
-    <form class="navbar-form" ng-submit="search()">        
-        <div class="col-xs-10 col-sm-4 col-md-4 col-lg-6">
+    <form class="navbar-form">        
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
             <input type="text" class="form-control" id="cidade" required ng-model="cidade" maxlength="80" placeholder="Procure na sua cidade">
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <button type="submit" class="btn btn-info">Buscar</button>    
-        </div>            
     </form>            
 </div>
 
-<div id="map-canvas"></div>
+<div id="map-wrapper">
+  <div id="map-canvas"></div>
+</div>
 <div class="container-fluid">
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">    
         <h3>Manifestações ativas em votação</h3>
 
         <p ng-show="!manifestacoes.length"><br />Ainda não existem manifestações criadas para a cidade de <strong>{{cidade}}</strong>.</p>
 
-        <div style="display: table; width: 100%;">        
+        <div class="cards" style="display: table; width: 100%;">        
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-repeat="item in manifestacoes">            
               <div class="panel panel-primary">
                 <div class="panel-heading">{{item.titulo}}</div>

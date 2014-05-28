@@ -9,12 +9,20 @@ body{
     padding-top:50px; /*padding for navbar*/
 }
 
+.navbar-fixed-top {
+    z-index: 900;
+}
+
 .navbar-form {
     box-shadow: none;
 }
 
 .navbar-form .form-control {
     width: 100%;
+}
+
+.navbar-form .col-xs-12 {
+    margin-bottom: 10px;
 }
 
 .navbar-custom {
@@ -33,21 +41,35 @@ body{
     box-shadow: inset 0 0 0;
 }
 
+.container-fluid .cards > div {
+    padding-left: 0;
+}
+
+#map-wrapper {
+    width:100%;
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+}
+
 #map-canvas {
     width:33.3333%;
-    height:calc(100% - 0);
     position:absolute;
     right:0;
     top:50px;
     bottom:0;
-    overflow:hidden;
 }
 
 @media screen and (max-width: 780px) {
     body {
-        padding-top:120px; /*padding for navbar*/
+        padding-top:320px; /*padding for navbar*/
+    }
+    #map-wrapper {
+        position:static;
     }
     #map-canvas {
-        display: none;
+        width:100%;
+        bottom: 150px;
     }
 }
