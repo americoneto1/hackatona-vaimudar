@@ -9,16 +9,22 @@ Manifestações podem ser visualizadas de acordo com a busca realizada. Elas pod
 
 Para cada manifestação é possível compartilhar no Twitter sendo contra ou a favor e na própria manifestação estes dados são computados, possibilitando maior confiabilidade.
 
+A príncipio todas as manifestações criadas já estão sendo apresentadas na aplicação, mas no futuro seria criado um módulo administrativo para aprovação. A ideia de não precisar de cadastrar, torna o aplicativo mais simples e promove o anonimato.
+
 A aplicação pode ser visualizada em telas menores, como tablets e smartphones, pois segue padrões de web responsive.
 
-## Configuração local
+## Manutenabilidade
 
-A aplicação utiliza o Yeoman generator, portanto é necessário rodar os seguintes comandos.
+A aplicação utiliza tecnologias modernas e conhecidas pelo mercado, facilitando o aprendizado técnico e manutenção.
+
+## Configuração local
 
 ### Pré requisitos
  * NodeJS
  * Ruby
  * MongoDB
+
+A aplicação utiliza o Yeoman generator, portanto é necessário rodar os seguintes comandos:
 
 ```bash
 $ npm install grunt-cli -g
