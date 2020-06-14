@@ -1,6 +1,10 @@
 Aplicação de controle de manifestações
 ==================
 
+## Vencedor do Hackatona #VaiMudarNaCopa
+
+https://medium.com/open-knowledge-brasil/conhe%C3%A7a-os-vencedores-da-hackatona-vaimudarnacopa-442539131be6
+
 ## Objetivo da aplicação
 
 Fomentar a organização de protestos, através da divulgação e organização por temas específicos.
